@@ -1,0 +1,17 @@
+
+# copy bespoke annotation libs to home folder
+mv /mnt/c/Users/s01lv1/Downloads/org.* ~
+
+vi Singularity
+singularity --verbose build --fakeroot r_libs.sif Singularity # success starting from rocker/tidyverse:4.2.2, but need more packages
+# CRAN recommends installing r-base, r-base-dev (for install.packages function) and r-recommended (a package bundle with libs such as nnet and nlme)
+# installing R packages with missing deps (such as freetype2) on simpler rocker images causes errors, and then image not built
+# installing R packages interactively, they are not permanent, but good for testing
+
+# build a basic image, above, and edit it interactively
+singularity exec r_libs.sif /bin/bash
+singularity exec r_libs.sif bash # file system not loaded rw
+singularity shell --no-home --fakeroot --writable r_libs.sif # changes occur in the sandbox only, image doesn't keep the changes; use this to test package additions
+singularity shell --no-home r_libs.sif # this also works for interactive use
+
+
