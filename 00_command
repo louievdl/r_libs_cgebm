@@ -3,7 +3,8 @@
 mv /mnt/c/Users/s01lv1/Downloads/org.* ~
 
 vi Singularity
-singularity --verbose build --fakeroot r_libs.sif Singularity # success starting from rocker/tidyverse:4.2.2, but need more packages
+singularity --verbose build --fakeroot r_libs_431.sif Singularity # success starting from rocker/tidyverse:4.3.1, but need more packages
+#singularity --verbose build --fakeroot r_libs.sif Singularity # success starting from rocker/tidyverse:4.2.2, but need more packages
 # CRAN recommends installing r-base, r-base-dev (for install.packages function) and r-recommended (a package bundle with libs such as nnet and nlme)
 # installing R packages with missing deps (such as freetype2) on simpler rocker images causes errors, and then image not built
 # installing R packages interactively, they are not permanent, but good for testing

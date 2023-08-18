@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: rocker/tidyverse:4.2.2 # R version 4.2.2
+From: rocker/tidyverse:4.3.1 # R version
 #From: rocker/r-ubuntu # official repo, based on jammy
 
 %runscript
@@ -19,7 +19,7 @@ From: rocker/tidyverse:4.2.2 # R version 4.2.2
  apt update
  apt -y install r-base r-base-dev r-recommended # r-base-dev necessary for installing r packages (e.g. by install.packages)
  apt-get clean
- # comes with BiocManager 3.16, tidyverse 2.0.0
+ # comes with BiocManager 3.x, tidyverse 2.x
 
  R --version
 
@@ -42,11 +42,13 @@ From: rocker/tidyverse:4.2.2 # R version 4.2.2
  Rscript -e 'install.packages(c("vegan", "seriation", "openxlsx", "msigdbr"), repos = "https://cloud.r-project.org")'
  Rscript -e 'BiocManager::install("clusterProfiler")' # includes DOSE,enrichplot,fgsea as dep
  Rscript -e 'BiocManager::install(c("edgeR", "dada2", "phyloseq"))'
+ Rscript -e 'BiocManager::install("erccdashboard")'
  # R pkg installation too fragile - igraph needed by phyloseq (and clusterProfiler?), but not downloaded by them.
  #Rscript -e 'install.packages(c("BiocManager", "vegan", "seriation", "openxlsx", "msigdbr", "gplots", "igraph"), repos = "https://cloud.r-project.org")'
  #Rscript -e 'BiocManager::install(c("edgeR", "dada2", "phyloseq", "clusterProfiler", "DOSE", "enrichplot"))'
  Rscript -e 'library(edgeR); library(tidyverse); library(openxlsx); library(msigdbr); library(gplots); library(edgeR); library(clusterProfiler); library(DOSE); library(enrichplot); sessionInfo()'
  Rscript -e 'library(seriation); library(vegan); library(dada2); library(phyloseq); sessionInfo()'
+ Rscript -e 'library(erccdashboard); sessionInfo()'
 
 %environment
  #export PATH="$PATH:/usr/games"
