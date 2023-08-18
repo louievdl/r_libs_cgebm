@@ -19,7 +19,7 @@ From: rocker/tidyverse:4.3.1 # R version
  apt update
  apt -y install r-base r-base-dev r-recommended # r-base-dev necessary for installing r packages (e.g. by install.packages)
  apt-get clean
- # comes with BiocManager 3.x, tidyverse 2.x
+ # v4.3.1 comes with BiocManager 3.17, tidyverse 2.0.0
 
  R --version
 
